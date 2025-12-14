@@ -4,9 +4,9 @@ from typing import List
 from app.infra.sqlalchemy.config.database import get_db
 from app.schemas.bottle_schema import BottleCreate, BottleResponse
 from app.infra.sqlalchemy.repositorios.bottle_repository import BottleRepository
-from app.controllers.game_controller import GameController  # <--- IMPORTAR ISTO
-from app.router.deps import get_current_user, verify_distribution_key
+from app.router.deps import get_current_user
 from app.infra.sqlalchemy.models.models import User
+
 
 router = APIRouter(
     prefix="/bottles",
@@ -32,14 +32,3 @@ def get_my_bottles(
 ):
     repo = BottleRepository(db)
     return repo.get_received_by_user(current_user.id)
-
-
-@router.post("/distribute", dependencies=[Depends(verify_distribution_key)])
-def trigger_distribution(
-    db: Session = Depends(get_db)
-):
-    """
-    Dispara o sorteio das garrafas.
-    """
-    controller = GameController(db)
-    return controller.distribute_daily_bottles()

@@ -1,8 +1,8 @@
-drop database if exists message_bottle;
+drop database if exists bottle_db;
 
-create database message_bottle;
+create database bottle_db;
 
-use message_bottle;
+use bottle_db;
 
 -- Tabela de Usuários (Ilhados)
 CREATE TABLE users (

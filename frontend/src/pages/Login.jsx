@@ -29,10 +29,6 @@ function Login() {
 
   return (
     <div className="min-h-screen relative bg-gradient-to-b from-blue-300 to-blue-500 flex items-center justify-center overflow-hidden font-sans">
-      
-      {/* Decoração: Pássaros e Nuvens */}
-      <div className="absolute top-10 right-20 text-white text-4xl opacity-50">~~</div>
-      <div className="absolute top-20 right-40 text-white text-2xl opacity-40">~~</div>
 
       {/* Coqueiros Laterais (Imagens decorativas) */}
       <img 

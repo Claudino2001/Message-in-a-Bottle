@@ -1,4 +1,5 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, BackgroundTasks
+
 from sqlalchemy.orm import Session
 from app.infra.sqlalchemy.config.database import get_db
 from app.controllers.game_controller import GameController
@@ -12,10 +13,9 @@ router = APIRouter(
 
 
 @router.post("/distribute")
-def trigger_distribution(db: Session = Depends(get_db)):
-    """
-    Dispara o sorteio das garrafas.
-    Requer o header 'X-Distribution-Key' configurado no .env
-    """
+def trigger_distribution(
+    background_tasks: BackgroundTasks,
+    db: Session = Depends(get_db)
+):
     controller = GameController(db)
-    return controller.distribute_daily_bottles()
+    return controller.distribute_daily_bottles(background_tasks)

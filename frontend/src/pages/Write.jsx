@@ -6,12 +6,15 @@ function Write() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [hasSentToday, setHasSentToday] = useState(false);
-  const [success, setSuccess] = useState(false); // Estado para mensagem de sucesso
+  const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(true);
   
+  // Estados para validação
+  const [touched, setTouched] = useState({ title: false, content: false });
+  const [errors, setErrors] = useState({ title: "", content: "" });
+
   const navigate = useNavigate();
 
-  // Verifica se pode escrever ao carregar a página
   useEffect(() => {
     api.get("/bottles/check-daily")
       .then(res => {
@@ -24,35 +27,49 @@ function Write() {
       });
   }, []);
 
+  // Função de validação em tempo real
+  const validateField = (field, value) => {
+    let errorMsg = "";
+    if (!value.trim()) {
+        errorMsg = "Este campo é obrigatório.";
+    }
+    setErrors(prev => ({ ...prev, [field]: errorMsg }));
+    return errorMsg === "";
+  };
+
+  const handleBlur = (field, value) => {
+    setTouched(prev => ({ ...prev, [field]: true }));
+    validateField(field, value);
+  };
+
   const handleSend = async () => {
-    if (!title || !content) return;
+    // Marca tudo como tocado para mostrar erros se o usuário tentar enviar vazio
+    setTouched({ title: true, content: true });
+    
+    const isTitleValid = validateField("title", title);
+    const isContentValid = validateField("content", content);
+
+    if (!isTitleValid || !isContentValid) return;
 
     try {
       await api.post("/bottles/", { title, content });
-      // Troca a tela para sucesso visual
       setSuccess(true);
     } catch (error) {
       console.error(error);
     }
   };
 
-  // Se estiver carregando, mostra nada ou um spinner
   if (loading) return <div className="min-h-screen bg-orange-100"></div>;
 
   return (
     <div className="min-h-screen relative bg-gradient-to-b from-orange-200 to-yellow-100 flex items-center justify-center font-sans">
       
-      {/* Background (Mantido) */}
       <div className="absolute top-10 w-40 h-40 bg-orange-400 rounded-full blur-2xl opacity-40"></div>
       <img src="https://cdn-icons-png.flaticon.com/512/433/433539.png" className="absolute bottom-0 left-[-20px] w-64 opacity-80" alt="coqueiro" />
       <img src="https://cdn-icons-png.flaticon.com/512/433/433539.png" className="absolute bottom-0 right-[-20px] w-64 opacity-80 scale-x-[-1]" alt="coqueiro" />
 
-      {/* Papel da Carta */}
       <div className="bg-[#fffdf0] p-8 md:p-12 rounded-sm shadow-xl z-10 w-full max-w-2xl relative border border-orange-100 min-h-[400px] flex flex-col justify-center">
         
-        {/* LÓGICA DE EXIBIÇÃO: */}
-        
-        {/* CASO 1: Já enviou hoje (Bloqueado) */}
         {hasSentToday ? (
            <div className="text-center">
               <h2 className="text-3xl text-blue-600 font-hand font-bold mb-4">
@@ -70,7 +87,6 @@ function Write() {
            </div>
 
         ) : success ? ( 
-          /* CASO 2: Acabou de enviar com sucesso */
           <div className="text-center animate-bounce-slow">
               <h2 className="text-4xl mb-4">🍾</h2>
               <h2 className="text-3xl text-orange-800 font-hand font-bold mb-4">
@@ -85,27 +101,50 @@ function Write() {
           </div>
 
         ) : (
-          /* CASO 3: Pode escrever (Formulário) */
           <>
             <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 w-32 h-8 bg-yellow-200 opacity-60 rotate-2"></div>
 
             <h2 className="text-3xl text-orange-800 font-hand font-bold mb-6 text-center">Escreva sua Mensagem</h2>
 
             <div className="space-y-4">
-              <input 
-                type="text" 
-                placeholder="Título da sua história..." 
-                className="w-full p-4 text-xl border-b-2 border-orange-200 bg-transparent focus:outline-none focus:border-orange-500 text-gray-700 placeholder-orange-300 font-hand"
-                value={title}
-                onChange={e => setTitle(e.target.value)}
-              />
+              {/* Campo Título */}
+              <div>
+                  <input 
+                    type="text" 
+                    placeholder="Título da sua história..." 
+                    className={`w-full p-4 text-xl border-b-2 bg-transparent focus:outline-none text-gray-700 placeholder-orange-300 font-hand transition-colors
+                        ${touched.title && errors.title ? "border-red-400 placeholder-red-300" : "border-orange-200 focus:border-orange-500"}
+                    `}
+                    value={title}
+                    onChange={e => {
+                        setTitle(e.target.value);
+                        if (touched.title) validateField("title", e.target.value);
+                    }}
+                    onBlur={() => handleBlur("title", title)}
+                  />
+                  {touched.title && errors.title && (
+                      <p className="text-red-500 text-sm mt-1 font-bold animate-pulse">⚠️ {errors.title}</p>
+                  )}
+              </div>
               
-              <textarea 
-                placeholder="O que você quer contar para o mundo hoje?" 
-                className="w-full h-64 p-4 text-lg border-2 border-dashed border-orange-200 rounded-lg bg-orange-50 focus:outline-none focus:bg-white transition resize-none text-gray-700 leading-relaxed font-hand"
-                value={content}
-                onChange={e => setContent(e.target.value)}
-              />
+              {/* Campo Conteúdo */}
+              <div>
+                  <textarea 
+                    placeholder="O que você quer contar para o mundo hoje?" 
+                    className={`w-full h-64 p-4 text-lg border-2 border-dashed rounded-lg bg-orange-50 focus:outline-none focus:bg-white transition resize-none text-gray-700 leading-relaxed font-hand
+                        ${touched.content && errors.content ? "border-red-400" : "border-orange-200"}
+                    `}
+                    value={content}
+                    onChange={e => {
+                        setContent(e.target.value);
+                        if (touched.content) validateField("content", e.target.value);
+                    }}
+                    onBlur={() => handleBlur("content", content)}
+                  />
+                  {touched.content && errors.content && (
+                      <p className="text-red-500 text-sm mt-1 font-bold animate-pulse">⚠️ {errors.content}</p>
+                  )}
+              </div>
 
               <button 
                 onClick={handleSend}

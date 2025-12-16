@@ -65,9 +65,9 @@ function Write() {
     <div className="min-h-screen relative bg-gradient-to-b from-orange-200 to-yellow-100 flex items-center justify-center font-sans">
       
       <div className="absolute top-10 w-40 h-40 bg-orange-400 rounded-full blur-2xl opacity-40"></div>
-      <img src="https://cdn-icons-png.flaticon.com/512/433/433539.png" className="absolute bottom-0 left-[-20px] w-64 opacity-80" alt="coqueiro" />
-      <img src="https://cdn-icons-png.flaticon.com/512/433/433539.png" className="absolute bottom-0 right-[-20px] w-64 opacity-80 scale-x-[-1]" alt="coqueiro" />
-
+      
+      {/* IMAGENS DE COQUEIROS REMOVIDAS PARA LIMPAR A TELA (MOBILE) */}
+      
       <div className="bg-[#fffdf0] p-8 md:p-12 rounded-sm shadow-xl z-10 w-full max-w-2xl relative border border-orange-100 min-h-[400px] flex flex-col justify-center">
         
         {hasSentToday ? (
@@ -106,9 +106,9 @@ function Write() {
 
             <h2 className="text-3xl text-orange-800 font-hand font-bold mb-6 text-center">Escreva sua Mensagem</h2>
 
-            <div className="space-y-4">
+            <div className="space-y-6"> {/* Espaçamento aumentado entre inputs (space-y-6) */}
               {/* Campo Título */}
-              <div>
+              <div className="pt-2"> {/* Adicionado padding-top para não colar na borda superior */}
                   <input 
                     type="text" 
                     placeholder="Título da sua história..." 

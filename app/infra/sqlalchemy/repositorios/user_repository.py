@@ -25,7 +25,8 @@ class UserRepository:
             username=user.username,
             email=user.email,
             password_hash=hashed_password,
-            language="pt-BR"  # Default, mas você pode expandir o schema para aceitar isso
+            language="pt-BR",
+            is_verified=False
         )
         self.db.add(db_user)
         self.db.commit()

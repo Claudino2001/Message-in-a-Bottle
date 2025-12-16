@@ -1,16 +1,15 @@
 from sqlalchemy.orm import Session
-from sqlalchemy import func, cast, Date  # <--- Importe isso
+from sqlalchemy import func, cast, Date
 from app.infra.sqlalchemy.models.models import Bottle
 from app.schemas.bottle_schema import BottleCreate
 from datetime import date
-
+from app.utils.time_helper import get_db_cycle_range
 
 class BottleRepository:
     def __init__(self, db: Session):
         self.db = db
 
     def create(self, bottle: BottleCreate, sender_id: int):
-        # A verificação será feita na rota (controller/router) para lançar o erro HTTP correto
         db_bottle = Bottle(
             title=bottle.title,
             content=bottle.content,
@@ -23,12 +22,18 @@ class BottleRepository:
         return db_bottle
 
     def has_sent_today(self, user_id: int) -> bool:
-        """Verifica se o usuário já enviou uma garrafa na data de hoje"""
-        today = date.today()
+        """
+        Verifica se o usuário já enviou uma garrafa no CICLO ATUAL.
+        O ciclo reseta às 22h (Horário de Brasília).
+        """
+        # Pega o intervalo de tempo em UTC correspondente ao ciclo atual do Brasil
+        start_utc, end_utc = get_db_cycle_range()
 
+        # Verifica se existe alguma garrafa criada dentro desse intervalo
         exists = self.db.query(Bottle).filter(
             Bottle.sender_id == user_id,
-            cast(Bottle.created_at, Date) == today
+            Bottle.created_at >= start_utc, # Maior ou igual ao início do ciclo
+            Bottle.created_at < end_utc     # Menor que o fim do ciclo
         ).first()
 
         return exists is not None

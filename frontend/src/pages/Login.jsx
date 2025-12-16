@@ -19,7 +19,11 @@ function Login() {
       navigate("/write"); 
     } catch (err) {
       console.error(err);
-      setError("Email ou senha incorretos. Tente novamente.");
+      if (err.response && err.response.data && err.response.data.detail) {
+        setError(err.response.data.detail);
+      } else {
+        setError("Email ou senha incorretos. Tente novamente.");
+      }
     }
   };
 
@@ -84,6 +88,13 @@ function Login() {
             ENTRAR NA ILHA
           </button>
         </form>
+        
+        {/* LINK PARA RECUPERAR SENHA */}
+        <div className="mt-4 text-right">
+            <Link to="/forgot-password" className="text-sm text-blue-400 hover:text-blue-600 hover:underline">
+                Esqueci minha senha
+            </Link>
+        </div>
         
         <div className="mt-6 text-sm">
           <p className="text-gray-400">Ainda não tem cadastro?</p>

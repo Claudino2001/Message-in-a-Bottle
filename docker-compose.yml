@@ -31,9 +31,15 @@ services:
         condition: service_healthy
     environment:
       DATABASE_URL: mysql+pymysql://${DB_USER}:${DB_PASSWORD}@db/${DB_NAME}
-      JWT_SECRET_KEY: "${JWT_SECRET_KEY}"
-      JWT_ALGORITHM: "${JWT_ALGORITHM}"
-      DISTRIBUTION_SECRET: "${DISTRIBUTION_SECRET}"
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
+      JWT_ALGORITHM: ${JWT_ALGORITHM}
+      DISTRIBUTION_SECRET: ${DISTRIBUTION_SECRET}
+      MAIL_USERNAME: ${MAIL_USERNAME}
+      MAIL_PASSWORD: ${MAIL_PASSWORD}
+      MAIL_FROM: ${MAIL_FROM}
+      MAIL_PORT: ${MAIL_PORT}
+      MAIL_SERVER: ${MAIL_SERVER}
+      FRONTEND_URL: ${FRONTEND_URL}
 
   # 3. Front-end (Nginx + React)
   frontend:

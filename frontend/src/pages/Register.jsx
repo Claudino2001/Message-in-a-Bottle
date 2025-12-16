@@ -58,13 +58,17 @@ function Register() {
         
         {success ? (
           <div className="animate-pulse">
-            <h2 className="text-6xl mb-4">🥥</h2>
+            <h2 className="text-6xl mb-4">📧</h2>
             <h2 className="text-3xl font-hand text-blue-600 mb-4 font-bold">
-              Bem-vindo!
+              Quase lá!
             </h2>
-            <p className="text-gray-600 text-lg mb-8">
-              Sua conta foi criada com sucesso. Agora você faz parte da ilha.
-            </p>
+            <div className="text-gray-600 text-lg mb-8 space-y-2">
+              <p>Sua conta foi criada, mas a ilha é protegida.</p>
+              <p className="font-bold text-orange-600 bg-orange-100 p-2 rounded">
+                Enviamos um link de confirmação para o seu e-mail.
+              </p>
+              <p className="text-sm">Clique nele para ativar sua conta e entrar.</p>
+            </div>
             
             <button 
               onClick={() => navigate("/login")}

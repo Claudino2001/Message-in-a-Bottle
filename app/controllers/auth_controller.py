@@ -12,14 +12,24 @@ class AuthController:
         self.repo = UserRepository(db)
 
     async def register(self, user_data: UserCreate, bg_tasks: BackgroundTasks):
-        if self.repo.get_by_email(user_data.email):
-            raise HTTPException(status_code=400, detail="Email já cadastrado")
+        # 1. Verifica se o Nome de Usuário já existe
+        if self.repo.get_by_username(user_data.username):
+            raise HTTPException(
+                status_code=400, 
+                detail="Este nome de usuário já está em uso. Por favor, escolha outro."
+            )
 
+        # 2. Verifica se o E-mail já existe
+        if self.repo.get_by_email(user_data.email):
+            raise HTTPException(
+                status_code=400, 
+                detail="Este e-mail já está cadastrado. Tente fazer login ou recuperar sua senha."
+            )
+
+        # Se passou, cria o usuário
         hashed_pw = get_password_hash(user_data.password)
-        # Cria usuário (is_verified começa como False no model)
         new_user = self.repo.create(user_data, hashed_password=hashed_pw)
 
-        # Gera token e agenda envio de e-mail
         token = create_email_token({"sub": new_user.email})
         bg_tasks.add_task(send_verification_email, new_user.email, token)
 
@@ -34,14 +44,12 @@ class AuthController:
                 detail="Email ou senha incorretos",
                 headers={"WWW-Authenticate": "Bearer"},
             )
-
-        # Bloquear login se não verificado
+        
         if not user.is_verified:
             raise HTTPException(status_code=400, detail="Verifique seu e-mail antes de entrar.")
 
-        access_token_expires = timedelta(minutes=30)
         access_token = create_access_token(
-            data={"sub": user.email}, expires_delta=access_token_expires
+            data={"sub": user.email}
         )
 
         return {"access_token": access_token, "token_type": "bearer"}

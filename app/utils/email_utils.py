@@ -26,14 +26,14 @@ async def send_verification_email(email: EmailStr, token: str):
 
     html = f"""
     <h1>Bem-vindo à Ilha! 🏝️</h1>
-    <p>Obrigado por se juntar ao Message in a Bottle.</p>
+    <p>Obrigado por se juntar aos naúfragos digitais.</p>
     <p>Para ativar sua conta e começar a lançar garrafas, clique no link abaixo:</p>
     <a href="{verify_link}" style="padding: 10px 20px; background-color: #F4A460; color: white; text-decoration: none; border-radius: 5px;">ATIVAR CONTA</a>
     <p>Se você não criou esta conta, ignore este e-mail.</p>
     """
 
     message = MessageSchema(
-        subject="Ative sua conta da Ilha 🥥",
+        subject="Ative sua conta! 🌴🥥",
         recipients=[email],
         body=html,
         subtype=MessageType.html
@@ -57,7 +57,7 @@ async def send_reset_password_email(email: EmailStr, token: str):
     """
 
     message = MessageSchema(
-        subject="Recuperação de Senha - Message in a Bottle",
+        subject="Recuperação de Senha - Message in a Bottle 🙈",
         recipients=[email],
         body=html,
         subtype=MessageType.html

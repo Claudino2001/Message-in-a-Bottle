@@ -12,9 +12,9 @@ class User(Base):
     email = Column(String(100), unique=True, index=True)
     password_hash = Column(String(255))
     language = Column(String(10), default='pt-BR')
+    is_verified = Column(Boolean, default=False)
     created_at = Column(DateTime, default=datetime.now)
 
-    # Relacionamentos
     sent_bottles = relationship(
         "Bottle", foreign_keys="[Bottle.sender_id]", back_populates="sender")
     received_bottles = relationship(

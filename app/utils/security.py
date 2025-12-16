@@ -8,7 +8,7 @@ import os
 SECRET_KEY = os.getenv("JWT_SECRET_KEY")
 ALGORITHM = os.getenv("JWT_ALGORITHM")
 ACCESS_TOKEN_EXPIRE_MINUTES = int(
-    os.getenv("JWT_ACCESS_TOKEN_EXPIRE_MINUTES", 30))
+    os.getenv("JWT_ACCESS_TOKEN_EXPIRE_MINUTES"))
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -31,7 +31,7 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     if expires_delta:
         expire = now + expires_delta
     else:
-        expire = now + timedelta(minutes=15)
+        expire = now + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
 
     to_encode.update({"exp": expire})
 
@@ -44,7 +44,7 @@ def create_email_token(data: dict, expires_delta: timedelta = timedelta(hours=24
     to_encode = data.copy()
     expire = datetime.now(ZoneInfo("America/Sao_Paulo")) + expires_delta
     to_encode.update({"exp": expire, "scope": "email_action"}
-                     )  # Scope para diferenciar de login
+                     )
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
 

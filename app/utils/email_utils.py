@@ -21,7 +21,7 @@ conf = ConnectionConfig(
 async def send_verification_email(email: EmailStr, token: str):
     """Envia e-mail de boas-vindas com link de ativação"""
 
-    base_url = os.getenv("FRONTEND_URL", "http://localhost")
+    base_url = os.getenv("FRONTEND_URL")
     verify_link = f"{base_url}/verify-email?token={token}"
 
     html = f"""
@@ -45,7 +45,7 @@ async def send_verification_email(email: EmailStr, token: str):
 
 async def send_reset_password_email(email: EmailStr, token: str):
     """Envia link para recuperar senha"""
-    base_url = os.getenv("FRONTEND_URL", "http://localhost")
+    base_url = os.getenv("FRONTEND_URL")
     reset_link = f"{base_url}/reset-password?token={token}"
 
     html = f"""
@@ -75,7 +75,7 @@ async def send_tide_notification(emails: List[EmailStr]):
     if not emails:
         return
 
-    base_url = os.getenv("FRONTEND_URL", "http://localhost")
+    base_url = os.getenv("FRONTEND_URL")
     
     html = f"""
     <h1>A Maré Subiu! 🌊🌕</h1>

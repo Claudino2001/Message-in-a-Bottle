@@ -13,16 +13,37 @@ function Login() {
     e.preventDefault();
     setError("");
 
+    // 1. Validação no Front para evitar chamar o backend à toa (Opcional, mas recomendado)
+    if (!email || !password) {
+      setError("Por favor, preencha email e senha.");
+      return;
+    }
+
     try {
       const response = await api.post("/auth/login", { email, password });
       localStorage.setItem("token", response.data.access_token);
       navigate("/write"); 
     } catch (err) {
       console.error(err);
+      
+      // 2. Tratamento correto do erro que vem do Backend
       if (err.response && err.response.data && err.response.data.detail) {
-        setError(err.response.data.detail);
+        const detail = err.response.data.detail;
+
+        // Se for uma lista (erros de validação do Pydantic/FastAPI)
+        if (Array.isArray(detail)) {
+             // Pega a mensagem do primeiro erro da lista
+             setError(detail[0].msg); 
+        } 
+        // Se for uma String normal (ex: "Email ou senha incorretos")
+        else if (typeof detail === 'string') {
+             setError(detail);
+        }
+        else {
+             setError("Erro desconhecido ao fazer login.");
+        }
       } else {
-        setError("Email ou senha incorretos. Tente novamente.");
+        setError("Falha na conexão. Tente novamente.");
       }
     }
   };

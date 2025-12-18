@@ -71,12 +71,16 @@ async def send_tide_notification(emails: List[EmailStr]):
     """
     Envia e-mail em massa avisando que a maré trouxe garrafas.
     Usado pelo Cron Job das 22h.
+
+    CORREÇÃO DE PRIVACIDADE:
+    Itera sobre a lista para enviar um e-mail individual para cada usuário.
+    Isso garante que o cabeçalho 'To' mostre apenas o e-mail do próprio destinatário.
     """
     if not emails:
         return
 
     base_url = os.getenv("FRONTEND_URL")
-    
+
     html = f"""
     <h1>A Maré Subiu! 🌊🌕</h1>
     <p>Olá, Náufrago!</p>
@@ -86,13 +90,17 @@ async def send_tide_notification(emails: List[EmailStr]):
     <a href="{base_url}" style="color: #F4A460; font-weight: bold;">Ir para a Praia</a>
     """
 
-    message = MessageSchema(
-        subject="🌊 Uma garrafa chegou na sua praia!",
-        # O FastMail envia como Bcc (cópia oculta) por padrão em listas grandes se configurado, ou um por um.
-        recipients=emails,
-        body=html,
-        subtype=MessageType.html
-    )
-
     fm = FastMail(conf)
-    await fm.send_message(message)
+
+    # LOOP DE ENVIO INDIVIDUAL
+    for email in emails:
+        try:
+            message = MessageSchema(
+                subject="🌊 Uma garrafa chegou na sua praia!",
+                recipients=[email],
+                body=html,
+                subtype=MessageType.html
+            )
+            await fm.send_message(message)
+        except Exception as e:
+            print(f"Erro ao enviar email para {email}: {str(e)}")

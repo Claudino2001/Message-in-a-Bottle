@@ -9,7 +9,10 @@ function Write() {
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(true);
   
-  // Estados para validação
+  // Limites de Caracteres
+  const MAX_TITLE = 100;
+  const MAX_CONTENT = 3000;
+
   const [touched, setTouched] = useState({ title: false, content: false });
   const [errors, setErrors] = useState({ title: "", content: "" });
 
@@ -27,7 +30,6 @@ function Write() {
       });
   }, []);
 
-  // Função de validação em tempo real
   const validateField = (field, value) => {
     let errorMsg = "";
     if (!value.trim()) {
@@ -43,7 +45,6 @@ function Write() {
   };
 
   const handleSend = async () => {
-    // Marca tudo como tocado para mostrar erros se o usuário tentar enviar vazio
     setTouched({ title: true, content: true });
     
     const isTitleValid = validateField("title", title);
@@ -63,55 +64,41 @@ function Write() {
 
   return (
     <div className="min-h-screen relative bg-gradient-to-b from-orange-200 to-yellow-100 flex items-center justify-center font-sans">
-      
       <div className="absolute top-10 w-40 h-40 bg-orange-400 rounded-full blur-2xl opacity-40"></div>
-      
-      {/* IMAGENS DE COQUEIROS REMOVIDAS PARA LIMPAR A TELA (MOBILE) */}
       
       <div className="bg-[#fffdf0] p-8 md:p-12 rounded-sm shadow-xl z-10 w-full max-w-2xl relative border border-orange-100 min-h-[400px] flex flex-col justify-center">
         
         {hasSentToday ? (
            <div className="text-center">
-              <h2 className="text-3xl text-blue-600 font-hand font-bold mb-4">
-                🌊 Garrafa lançada!
-              </h2>
-              <p className="text-xl text-gray-700 font-hand">
-                Você já lançou a sua garrafa diária ao oceano.
-              </p>
-              <p className="mt-4 text-gray-500 text-sm">
-                Volte amanhã para enviar outra mensagem.
-              </p>
-              <button onClick={() => navigate("/")} className="mt-8 text-blue-500 hover:underline">
-                Voltar ao início
-              </button>
+              <h2 className="text-3xl text-blue-600 font-hand font-bold mb-4">🌊 Garrafa lançada!</h2>
+              <p className="text-xl text-gray-700 font-hand">Você já lançou a sua garrafa diária ao oceano.</p>
+              <button onClick={() => navigate("/")} className="mt-8 text-blue-500 hover:underline">Voltar ao início</button>
            </div>
-
         ) : success ? ( 
           <div className="text-center animate-bounce-slow">
               <h2 className="text-4xl mb-4">🍾</h2>
-              <h2 className="text-3xl text-orange-800 font-hand font-bold mb-4">
-                Mensagem Enviada!
-              </h2>
-              <p className="text-xl text-gray-700 font-hand">
-                Sua garrafa está flutuando no oceano digital.
-              </p>
-              <button onClick={() => navigate("/")} className="mt-8 bg-blue-500 text-white px-6 py-2 rounded-full">
-                Voltar
-              </button>
+              <h2 className="text-3xl text-orange-800 font-hand font-bold mb-4">Mensagem Enviada!</h2>
+              <p className="text-xl text-gray-700 font-hand">Sua garrafa está flutuando no oceano digital.</p>
+              <button onClick={() => navigate("/")} className="mt-8 bg-blue-500 text-white px-6 py-2 rounded-full">Voltar</button>
           </div>
-
         ) : (
           <>
             <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 w-32 h-8 bg-yellow-200 opacity-60 rotate-2"></div>
-
             <h2 className="text-3xl text-orange-800 font-hand font-bold mb-6 text-center">Escreva sua Mensagem</h2>
 
-            <div className="space-y-6"> {/* Espaçamento aumentado entre inputs (space-y-6) */}
+            <div className="space-y-6"> 
               {/* Campo Título */}
-              <div className="pt-2"> {/* Adicionado padding-top para não colar na borda superior */}
+              <div className="pt-2"> 
+                  <div className="flex justify-between items-end mb-1 px-1">
+                    <label className="text-orange-900 font-hand font-bold">Título</label>
+                    <span className={`text-xs ${title.length === MAX_TITLE ? 'text-red-500 font-bold' : 'text-gray-400'}`}>
+                      {title.length}/{MAX_TITLE}
+                    </span>
+                  </div>
                   <input 
                     type="text" 
                     placeholder="Título da sua história..." 
+                    maxLength={MAX_TITLE}
                     className={`w-full p-4 text-xl border-b-2 bg-transparent focus:outline-none text-gray-700 placeholder-orange-300 font-hand transition-colors
                         ${touched.title && errors.title ? "border-red-400 placeholder-red-300" : "border-orange-200 focus:border-orange-500"}
                     `}
@@ -129,8 +116,15 @@ function Write() {
               
               {/* Campo Conteúdo */}
               <div>
+                  <div className="flex justify-between items-end mb-1 px-1">
+                    <label className="text-orange-900 font-hand font-bold">Sua História</label>
+                    <span className={`text-xs ${content.length === MAX_CONTENT ? 'text-red-500 font-bold' : 'text-gray-400'}`}>
+                      {content.length}/{MAX_CONTENT}
+                    </span>
+                  </div>
                   <textarea 
                     placeholder="O que você quer contar para o mundo hoje?" 
+                    maxLength={MAX_CONTENT}
                     className={`w-full h-64 p-4 text-lg border-2 border-dashed rounded-lg bg-orange-50 focus:outline-none focus:bg-white transition resize-none text-gray-700 leading-relaxed font-hand
                         ${touched.content && errors.content ? "border-red-400" : "border-orange-200"}
                     `}
@@ -155,7 +149,6 @@ function Write() {
             </div>
           </>
         )}
-
       </div>
     </div>
   );

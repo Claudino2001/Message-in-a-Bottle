@@ -6,7 +6,6 @@ export default {
   ],
   theme: {
     extend: {
-      // Vamos adicionar suas cores personalizadas aqui
       colors: {
         'ocean-light': '#87CEEB', // Céu
         'ocean-deep': '#00BFFF',  // Mar
@@ -14,7 +13,7 @@ export default {
         'sun': '#FFD700',         // Sol
       },
       fontFamily: {
-        'hand': ['cursive'], // Fonte estilo "carta"
+        'hand': ['cursive'],
       }
     },
   },

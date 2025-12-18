@@ -12,9 +12,6 @@ export default {
         'sand': '#F4A460',        // Areia
         'sun': '#FFD700',         // Sol
       },
-      fontFamily: {
-        'hand': ['cursive'],
-      }
     },
   },
   plugins: [],

@@ -1,11 +1,13 @@
 import { useState } from "react";
 import api from "../services/api";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next"; // 1. Importação do hook
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState({ type: "", message: "" });
   const [loading, setLoading] = useState(false);
+  const { t } = useTranslation(); // 2. Inicialização do hook
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,14 +19,14 @@ function ForgotPassword() {
       await api.post("/auth/forgot-password", { email });
       setStatus({ 
         type: "success", 
-        message: "Se este e-mail estiver cadastrado, você receberá um link de recuperação em instantes." 
+        message: t('forgot_password.success_message') 
       });
       setEmail("");
     } catch (err) {
       console.error(err);
       setStatus({ 
         type: "error", 
-        message: "Ocorreu um erro ao tentar enviar o e-mail. Tente novamente." 
+        message: t('forgot_password.error_message') 
       });
     } finally {
       setLoading(false);
@@ -34,9 +36,11 @@ function ForgotPassword() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-300 to-blue-500 flex items-center justify-center font-sans px-4">
       <div className="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-md text-center">
-        <h2 className="text-3xl font-hand text-blue-600 mb-4 font-bold">Recuperar Senha 🔐</h2>
+        <h2 className="text-3xl font-hand text-blue-600 mb-4 font-bold">
+          {t('forgot_password.title')} 🔐
+        </h2>
         <p className="text-gray-600 mb-6 text-sm">
-          Digite seu e-mail abaixo e enviaremos um link mágico para você redefinir sua senha.
+          {t('forgot_password.description')}
         </p>
 
         {status.message && (
@@ -48,7 +52,7 @@ function ForgotPassword() {
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input 
             type="email" 
-            placeholder="Seu e-mail cadastrado" 
+            placeholder={t('forgot_password.email_placeholder')}
             className="p-3 border-2 border-blue-100 rounded-lg focus:outline-none focus:border-blue-400 bg-blue-50"
             value={email}
             onChange={e => setEmail(e.target.value)}
@@ -60,13 +64,13 @@ function ForgotPassword() {
             disabled={loading}
             className="bg-orange-400 text-white font-bold py-3 rounded-lg hover:bg-orange-500 transition shadow-md disabled:opacity-50"
           >
-            {loading ? "Enviando..." : "ENVIAR LINK"}
+            {loading ? t('forgot_password.sending') : t('forgot_password.send_btn')}
           </button>
         </form>
 
         <div className="mt-6">
           <Link to="/login" className="text-blue-500 hover:underline text-sm font-bold">
-            ← Voltar para o Login
+            {t('forgot_password.back_to_login')}
           </Link>
         </div>
       </div>

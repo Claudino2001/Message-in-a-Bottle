@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import api from "../services/api";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next"; // 1. Importação do hook
 
 function Home() {
   const [bottleCount, setBottleCount] = useState(0);
   const navigate = useNavigate();
+  const { t } = useTranslation(); // 2. Inicialização do hook
 
   useEffect(() => {
     api.get("/public/ocean-stats")
@@ -49,7 +51,7 @@ function Home() {
             {bottleCount !== null ? bottleCount : "..."}
           </h1>
           <p className="text-lg md:text-xl mt-4 font-light tracking-widest uppercase">
-            Garrafas no Oceano
+            {t('home.bottles_in_ocean')}
           </p>
         </div>
 
@@ -66,18 +68,18 @@ function Home() {
       {/* SEÇÃO 2: Chamada para Ação */}
       <section className="min-h-[80vh] bg-[#F4A460] flex flex-col items-center justify-center p-8 relative z-10">
         <h2 className="text-3xl md:text-5xl text-orange-900 font-bold mb-10 text-center max-w-2xl drop-shadow-sm z-10 leading-snug">
-          Envie a sua mensagem para o mundo agora.
+          {t('home.cta_title')}
         </h2>
 
         <button 
           onClick={handleWriteMessage}
           className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-5 px-14 rounded-full text-lg md:text-xl shadow-2xl transition transform hover:scale-105 hover:-translate-y-1 z-10 border-4 border-orange-400/30 tracking-wide"
         >
-          ESCREVER MENSAGEM
+          {t('home.cta_button')}
         </button>
         
         <div className="mt-20 animate-bounce text-orange-800 opacity-60 z-10">
-          <p className="text-sm uppercase tracking-widest mb-2 font-bold">Como funciona</p>
+          <p className="text-sm uppercase tracking-widest mb-2 font-bold">{t('home.how_it_works')}</p>
           <svg className="w-8 h-8 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
         </div>
       </section>
@@ -90,52 +92,47 @@ function Home() {
           <img src="/crab.png" alt="Caranguejo" className="absolute bottom-[-100px] left-0 w-32 md:w-48 opacity-90 z-0 pointer-events-none transform -rotate-12 scale-x-[-1]" />
 
           <h3 className="text-4xl text-center text-orange-950 font-bold mb-16 drop-shadow-sm relative z-10">
-            O Código da Maré 📜
+            {t('home.rules_title')} 📜
           </h3>
 
           <div className="grid md:grid-cols-3 gap-8 relative z-10">
             <div className="bg-[#fffdf0]/90 p-8 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
               <div className="text-5xl mb-4 text-center">🏝️</div>
-              <h4 className="text-2xl font-bold text-blue-900 mb-2 text-center">Você é um Ilhado</h4>
+              <h4 className="text-2xl font-bold text-blue-900 mb-2 text-center">{t('home.card_1_title')}</h4>
               <p className="text-gray-700 leading-relaxed text-center text-base">
-                Neste jogo, você é um náufrago digital. Para participar, basta fazer seu cadastro ou login. 
-                Aqui não existem fotos ou perfis, apenas suas palavras lançadas ao mar.
+                {t('home.card_1_desc')}
               </p>
             </div>
 
             <div className="bg-[#fffdf0]/90 p-8 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
               <div className="text-5xl mb-4 text-center">✍️</div>
-              <h4 className="text-2xl font-bold text-orange-800 mb-2 text-center">Uma Carta, Um Dia</h4>
+              <h4 className="text-2xl font-bold text-orange-800 mb-2 text-center">{t('home.card_2_title')}</h4>
               <p className="text-gray-700 leading-relaxed text-center text-base">
-                A escassez é valiosa. Você pode escrever e lançar apenas uma mensagem por dia. 
-                Sua carta é colocada em uma garrafa e entregue ao destino, não a você.
+                {t('home.card_2_desc')}
               </p>
             </div>
 
             <div className="bg-[#fffdf0]/90 p-8 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
               <div className="text-5xl mb-4 text-center">🔭</div>
-              <h4 className="text-2xl font-bold text-teal-800 mb-2 text-center">O Horizonte</h4>
+              <h4 className="text-2xl font-bold text-teal-800 mb-2 text-center">{t('home.card_3_title')}</h4>
               <p className="text-gray-700 leading-relaxed text-center text-base">
-                Vê o número no céu? Ele conta as garrafas boiando agora. 
-                Representa o total de mensagens escritas por todos os ilhados, aguardando a maré.
+                {t('home.card_3_desc')}
               </p>
             </div>
 
             <div className="bg-[#fffdf0]/90 p-8 rounded-2xl shadow-md hover:shadow-xl transition duration-300 md:col-span-1.5">
               <div className="text-5xl mb-4 text-center">🌕</div>
-              <h4 className="text-2xl font-bold text-indigo-900 mb-2 text-center">A Maré das 22h</h4>
+              <h4 className="text-2xl font-bold text-indigo-900 mb-2 text-center">{t('home.card_4_title')}</h4>
               <p className="text-gray-700 leading-relaxed text-center text-base">
-                Todos os dias, às 22:00 (BRT), ocorre o grande sorteio. 
-                As correntes marítimas levam sua garrafa para um estranho e trazem uma nova para sua praia.
+                {t('home.card_4_desc')}
               </p>
             </div>
 
             <div className="bg-[#fffdf0]/90 p-8 rounded-2xl shadow-md hover:shadow-xl transition duration-300 md:col-span-2">
               <div className="text-5xl mb-4 text-center">🐚</div>
-              <h4 className="text-2xl font-bold text-yellow-800 mb-2 text-center">O Que a Maré Traz</h4>
+              <h4 className="text-2xl font-bold text-yellow-800 mb-2 text-center">{t('home.card_5_title')}</h4>
               <p className="text-gray-700 leading-relaxed text-center text-base">
-                A regra de ouro: Você escreve para o mundo, mas lê o que recebe. Suas mensagens enviadas partem para sempre. 
-                Mas as garrafas que chegam na sua praia ficam salvas na sua lista para você ler e reler quando quiser.
+                {t('home.card_5_desc')}
               </p>
             </div>
           </div>
@@ -151,7 +148,7 @@ function Home() {
         </div>
       </section>
       
-      {/* --- FOOTER COMPLETO RESTAURADO --- */}
+      {/* --- FOOTER --- */}
       <footer className="bg-[#c2966b] text-orange-900/80 py-10 px-4 text-center border-t border-orange-900/10 font-sans z-20 relative">
         <div className="max-w-4xl mx-auto flex flex-col items-center gap-6">
             
@@ -182,7 +179,9 @@ function Home() {
 
             <div>
                 <p className="font-bold text-lg">Gabriel Claudino</p>
-                <p className="text-xs mt-1 opacity-70">&copy; {new Date().getFullYear()} Message in a Bottle. Todos os direitos reservados.</p>
+                <p className="text-xs mt-1 opacity-70">
+                  &copy; {new Date().getFullYear()} Message in a Bottle. {t('footer.rights_reserved')}
+                </p>
             </div>
 
             <div className="flex flex-col md:flex-row gap-4 text-center text-[10px] opacity-60 mt-4">
@@ -196,8 +195,6 @@ function Home() {
                     Starfish icons created by Freepik - Flaticon
                 </a>
             </div>
-
-
         </div>
       </footer>
     </div>

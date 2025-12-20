@@ -1,6 +1,7 @@
 import { useState } from "react";
 import api from "../services/api";
 import { useNavigate, Link } from "react-router-dom";
+import { useTranslation } from "react-i18next"; // 1. Importação do hook
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -8,13 +9,14 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const { t } = useTranslation(); // 2. Inicialização do hook
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
 
     if (!email || !password) {
-      setError("Por favor, preencha email e senha.");
+      setError(t('login.error_missing_fields')); //
       return;
     }
 
@@ -25,16 +27,19 @@ function Login() {
     } catch (err) {
       console.error(err);
       if (err.response && err.response.data && err.response.data.detail) {
+        // Erros vindos do backend geralmente já vêm com texto específico. 
+        // Se quiser traduzir erros de backend, precisaria mapear os códigos de erro.
+        // Mantive a lógica original para exibir a mensagem do servidor se existir.
         const detail = err.response.data.detail;
         if (Array.isArray(detail)) {
           setError(detail[0].msg);
         } else if (typeof detail === 'string') {
           setError(detail);
         } else {
-          setError("Erro desconhecido ao fazer login.");
+          setError(t('login.error_unknown')); //
         }
       } else {
-        setError("Falha na conexão. Tente novamente.");
+        setError(t('login.error_connection')); //
       }
     }
   };
@@ -46,12 +51,12 @@ function Login() {
 
       <div className="bg-white p-10 rounded-2xl shadow-2xl z-10 w-96 text-center transform hover:scale-105 transition duration-500">
 
-        <h2 className="text-4xl text-blue-600 mb-8 font-bold">Login</h2>
+        <h2 className="text-4xl text-blue-600 mb-8 font-bold">{t('login.title')}</h2>
 
         <form onSubmit={handleLogin} className="flex flex-col gap-4">
           <input
             type="email"
-            placeholder="Seu email"
+            placeholder={t('login.email_placeholder')} //
             className="p-3 border-2 border-blue-100 rounded-lg focus:outline-none focus:border-blue-400 bg-blue-50 text-base"
             value={email}
             onChange={e => setEmail(e.target.value)}
@@ -60,7 +65,7 @@ function Login() {
           <div className="relative">
             <input
               type={showPassword ? "text" : "password"}
-              placeholder="Sua senha"
+              placeholder={t('login.password_placeholder')} //
               className="w-full p-3 border-2 border-blue-100 rounded-lg focus:outline-none focus:border-blue-400 bg-blue-50 pr-10 text-base"
               value={password}
               onChange={e => setPassword(e.target.value)}
@@ -77,20 +82,20 @@ function Login() {
           {error && <span className="text-red-500 text-sm font-bold">{error}</span>}
 
           <button type="submit" className="bg-orange-400 text-white font-bold py-3 rounded-lg hover:bg-orange-500 transition shadow-md mt-4 text-lg">
-            ENTRAR NA ILHA
+            {t('login.submit_button')}
           </button>
         </form>
 
         <div className="mt-4 text-right">
           <Link to="/forgot-password" className="text-sm text-blue-400 hover:text-blue-600 hover:underline">
-            Esqueci minha senha
+            {t('login.forgot_password')}
           </Link>
         </div>
 
         <div className="mt-6 text-sm">
-          <p className="text-gray-400">Ainda não tem cadastro?</p>
+          <p className="text-gray-400">{t('login.no_account')}</p>
           <Link to="/register" className="text-blue-500 font-bold hover:underline text-base">
-            Crie sua conta agora
+            {t('login.register_link')}
           </Link>
         </div>
       </div>

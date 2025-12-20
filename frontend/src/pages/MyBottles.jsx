@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import api from "../services/api";
+import { useTranslation } from "react-i18next"; // 1. Importação do hook
 
 function MyBottles() {
   const [bottles, setBottles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [sortOrder, setSortOrder] = useState('desc');
   const [expandedId, setExpandedId] = useState(null);
+  const { t } = useTranslation(); // 2. Inicialização do hook
 
   useEffect(() => {
     api.get("/bottles/received").then((res) => { setBottles(res.data); setLoading(false); })
@@ -21,15 +23,15 @@ function MyBottles() {
     <div className="min-h-screen bg-[#F4A460] pt-24 px-4 pb-10 font-sans">
       <div className="max-w-3xl mx-auto">
         <h2 className="text-4xl text-orange-900 font-bold mb-8 text-center drop-shadow-sm">
-          Garrafas que a maré trouxe 🐚
+          {t('my_bottles.title')} 🐚
         </h2>
 
         {loading ? (
-          <p className="text-center text-white text-xl animate-pulse">Procurando na areia...</p>
+          <p className="text-center text-white text-xl animate-pulse">{t('my_bottles.loading')}</p>
         ) : bottles.length === 0 ? (
           <div className="text-center bg-orange-200/50 p-10 rounded-xl border-2 border-orange-300 border-dashed">
-            <p className="text-2xl text-orange-800 font-bold">Nenhuma garrafa encontrada ainda.</p>
-            <p className="mt-2 text-orange-900 text-lg">Aguarde o sorteio das 22h!</p>
+            <p className="text-2xl text-orange-800 font-bold">{t('my_bottles.empty_title')}</p>
+            <p className="mt-2 text-orange-900 text-lg">{t('my_bottles.empty_subtitle')}</p>
           </div>
         ) : (
           <>
@@ -37,7 +39,10 @@ function MyBottles() {
               <button onClick={() => setSortOrder(prev => prev === 'desc' ? 'asc' : 'desc')}
                 className="flex items-center gap-2 text-orange-900 font-bold hover:text-white transition bg-orange-300/50 px-4 py-2 rounded-full text-sm"
               >
-                {sortOrder === 'desc' ? '⬇️ Mais Recentes' : '⬆️ Mais Antigas'}
+                {sortOrder === 'desc' 
+                  ? `⬇️ ${t('my_bottles.sort_newest')}` 
+                  : `⬆️ ${t('my_bottles.sort_oldest')}`
+                }
               </button>
             </div>
 
@@ -65,7 +70,11 @@ function MyBottles() {
                       {!isExpanded && <div className="absolute bottom-0 left-0 w-full h-6 bg-gradient-to-t from-[#fffdf0] to-transparent"></div>}
                     </div>
                     
-                    {isExpanded && <div className="mt-4 text-center text-sm text-blue-400 font-bold hover:underline">Recolher carta</div>}
+                    {isExpanded && (
+                      <div className="mt-4 text-center text-sm text-blue-400 font-bold hover:underline">
+                        {t('my_bottles.collapse_card')}
+                      </div>
+                    )}
                   </div>
                 );
               })}

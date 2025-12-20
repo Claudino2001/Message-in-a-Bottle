@@ -1,0 +1,122 @@
+{
+  "navbar": {
+    "home": "Home",
+    "write": "Write",
+    "my_bottles": "My Bottles",
+    "logout": "Logout",
+    "login": "Login"
+  },
+  "home": {
+    "bottles_in_ocean": "Bottles in the Ocean",
+    "cta_title": "Send your message to the world now.",
+    "cta_button": "WRITE MESSAGE",
+    "how_it_works": "HOW IT WORKS",
+    "rules_title": "The Tide Code 📜",
+    "card_1_title": "You are a Castaway",
+    "card_1_desc": "In this game, you are a digital castaway. To join, just sign up or log in. There are no photos or profiles here, only your words cast into the sea.",
+    "card_2_title": "One Letter, One Day",
+    "card_2_desc": "Scarcity is valuable. You can write and cast only one message per day. Your letter is put in a bottle and delivered to its destination, not to you.",
+    "card_3_title": "The Horizon",
+    "card_3_desc": "See the number in the sky? It counts the bottles floating right now. It represents the total messages written by all castaways, waiting for the tide.",
+    "card_4_title": "The 10 PM Tide",
+    "card_4_desc": "Every day at 22:00 (BRT), the great draw happens. Ocean currents take your bottle to a stranger and bring a new one to your shore.",
+    "card_5_title": "What the Tide Brings",
+    "card_5_desc": "The golden rule: You write to the world, but read what you receive. Your sent messages depart forever. But the bottles that arrive at your beach are saved in your list to read whenever you want."
+  },
+  "footer": {
+    "rights_reserved": "All rights reserved."
+  },
+  "forgot_password": {
+    "title": "Recover Password",
+    "description": "Enter your email below and we will send a magic link to reset your password.",
+    "email_placeholder": "Your registered email",
+    "success_message": "If this email is registered, you will receive a recovery link shortly.",
+    "error_message": "An error occurred while trying to send the email. Please try again.",
+    "sending": "Sending...",
+    "send_btn": "SEND LINK",
+    "back_to_login": "← Back to Login"
+  },
+  "login": {
+    "title": "Login",
+    "email_placeholder": "Your email",
+    "password_placeholder": "Your password",
+    "submit_button": "ENTER THE ISLAND",
+    "forgot_password": "I forgot my password",
+    "no_account": "Don't have an account yet?",
+    "register_link": "Create your account now",
+    "error_missing_fields": "Please fill in email and password.",
+    "error_unknown": "Unknown error during login.",
+    "error_connection": "Connection failed. Try again."
+  },
+  "my_bottles": {
+    "title": "Bottles brought by the tide",
+    "loading": "Searching the sand...",
+    "empty_title": "No bottles found yet.",
+    "empty_subtitle": "Wait for the 10 PM draw!",
+    "sort_newest": "Newest",
+    "sort_oldest": "Oldest",
+    "collapse_card": "Collapse letter"
+  },
+  "common": {
+    "password_rules_title": "Your password must have:",
+    "password_rule_length": "8 to 16 characters",
+    "password_rule_uppercase": "1 Uppercase Letter",
+    "password_rule_lowercase": "1 Lowercase Letter",
+    "password_rule_number": "1 Number"
+  },
+  "write": {
+    "validation_required": "Required.",
+    "already_sent_title": "Bottle cast!",
+    "already_sent_desc": "You have already cast your daily bottle into the ocean.",
+    "back_to_home": "Back to home",
+    "success_title": "Message Sent!",
+    "success_desc": "Your bottle is floating in the digital ocean.",
+    "back": "Back",
+    "form_title": "Write your Message",
+    "label_title": "Title",
+    "placeholder_title": "Title of your story...",
+    "label_content": "Your Story",
+    "placeholder_content": "What do you want to tell the world today?",
+    "btn_send": "CAST INTO THE SEA"
+  },
+  "reset_password": {
+    "error_invalid_token": "Invalid or missing token.",
+    "error_mismatch": "Passwords do not match.",
+    "error_weak": "Password does not meet security requirements.",
+    "success_msg": "Password changed successfully! Redirecting...",
+    "error_expired": "Reset error. The link may have expired.",
+    "link_invalid_screen": "Invalid link.",
+    "title": "New Password",
+    "placeholder_new": "New password",
+    "placeholder_confirm": "Confirm new password",
+    "btn_saving": "Saving...",
+    "btn_default": "SET NEW PASSWORD"
+  },
+  "register": {
+    "error_username_length": "Name must be between 3 and 50 characters.",
+    "error_password_length": "Password must be between 8 and 16 characters.",
+    "error_generic": "Error registering. Please try again.",
+    "success_title": "Almost there!",
+    "success_msg_1": "Your account has been created, but the island is protected.",
+    "success_msg_2": "We sent a confirmation link to your email.",
+    "success_msg_3": "Click it to activate your account and enter.",
+    "btn_go_login": "GO TO LOGIN",
+    "form_title": "Create your Account",
+    "placeholder_username": "Username (3-50 chars)",
+    "placeholder_email": "Your best email",
+    "placeholder_password": "Create a strong password",
+    "btn_register": "REGISTER",
+    "login_prompt": "Already have an account?",
+    "login_link": "Login here"
+  },
+  "verify": {
+    "loading_title": "Verifying...",
+    "loading_desc": "Validating your passage to the island.",
+    "success_title": "Account Activated!",
+    "success_desc": "Your email has been successfully confirmed. You can now enter and cast your messages.",
+    "btn_login": "GO TO LOGIN",
+    "error_title": "Oops!",
+    "error_desc": "The verification link is invalid or has expired.",
+    "btn_back": "Back to start"
+  }
+}

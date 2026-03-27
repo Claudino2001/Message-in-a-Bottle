@@ -1,0 +1,122 @@
+{
+  "navbar": {
+    "home": "Início",
+    "write": "Escrever",
+    "my_bottles": "Minhas Garrafas",
+    "logout": "Sair",
+    "login": "Entrar"
+  },
+  "home": {
+    "bottles_in_ocean": "Garrafas no Oceano",
+    "cta_title": "Envie a sua mensagem para o mundo agora.",
+    "cta_button": "ESCREVER MENSAGEM",
+    "how_it_works": "COMO FUNCIONA",
+    "rules_title": "O Código da Maré 📜",
+    "card_1_title": "Você é um Ilhado",
+    "card_1_desc": "Neste jogo, você é um náufrago digital. Para participar, basta fazer seu cadastro ou login. Aqui não existem fotos ou perfis, apenas suas palavras lançadas ao mar.",
+    "card_2_title": "Uma Carta, Um Dia",
+    "card_2_desc": "A escassez é valiosa. Você pode escrever e lançar apenas uma mensagem por dia. Sua carta é colocada em uma garrafa e entregue ao destino, não a você.",
+    "card_3_title": "O Horizonte",
+    "card_3_desc": "Vê o número no céu? Ele conta as garrafas boiando agora. Representa o total de mensagens escritas por todos os ilhados, aguardando a maré.",
+    "card_4_title": "A Maré das 22h",
+    "card_4_desc": "Todos os dias, às 22:00 (BRT), ocorre o grande sorteio. As correntes marítimas levam sua garrafa para um estranho e trazem uma nova para sua praia.",
+    "card_5_title": "O Que a Maré Traz",
+    "card_5_desc": "A regra de ouro: Você escreve para o mundo, mas lê o que recebe. Suas mensagens enviadas partem para sempre. Mas as garrafas que chegam na sua praia ficam salvas na sua lista para ler quando quiser."
+  },
+  "footer": {
+    "rights_reserved": "Todos os direitos reservados."
+  },
+  "forgot_password": {
+    "title": "Recuperar Senha",
+    "description": "Digite seu e-mail abaixo e enviaremos um link mágico para você redefinir sua senha.",
+    "email_placeholder": "Seu e-mail cadastrado",
+    "success_message": "Se este e-mail estiver cadastrado, você receberá um link de recuperação em instantes.",
+    "error_message": "Ocorreu um erro ao tentar enviar o e-mail. Tente novamente.",
+    "sending": "Enviando...",
+    "send_btn": "ENVIAR LINK",
+    "back_to_login": "← Voltar para o Login"
+  },
+  "login": {
+    "title": "Login",
+    "email_placeholder": "Seu email",
+    "password_placeholder": "Sua senha",
+    "submit_button": "ENTRAR NA ILHA",
+    "forgot_password": "Esqueci minha senha",
+    "no_account": "Ainda não tem cadastro?",
+    "register_link": "Crie sua conta agora",
+    "error_missing_fields": "Por favor, preencha email e senha.",
+    "error_unknown": "Erro desconhecido ao fazer login.",
+    "error_connection": "Falha na conexão. Tente novamente."
+  },
+  "my_bottles": {
+    "title": "Garrafas que a maré trouxe",
+    "loading": "Procurando na areia...",
+    "empty_title": "Nenhuma garrafa encontrada ainda.",
+    "empty_subtitle": "Aguarde o sorteio das 22h!",
+    "sort_newest": "Mais Recentes",
+    "sort_oldest": "Mais Antigas",
+    "collapse_card": "Recolher carta"
+  },
+  "common": {
+    "password_rules_title": "Sua senha precisa ter:",
+    "password_rule_length": "8 a 16 caracteres",
+    "password_rule_uppercase": "1 Letra Maiúscula",
+    "password_rule_lowercase": "1 Letra Minúscula",
+    "password_rule_number": "1 Número"
+  },
+  "write": {
+    "validation_required": "Obrigatório.",
+    "already_sent_title": "Garrafa lançada!",
+    "already_sent_desc": "Você já lançou a sua garrafa diária ao oceano.",
+    "back_to_home": "Voltar ao início",
+    "success_title": "Mensagem Enviada!",
+    "success_desc": "Sua garrafa está flutuando no oceano digital.",
+    "back": "Voltar",
+    "form_title": "Escreva sua Mensagem",
+    "label_title": "Título",
+    "placeholder_title": "Título da sua história...",
+    "label_content": "Sua História",
+    "placeholder_content": "O que você quer contar para o mundo hoje?",
+    "btn_send": "LANÇAR AO MAR"
+  },
+  "reset_password": {
+    "error_invalid_token": "Token inválido ou ausente.",
+    "error_mismatch": "As senhas não coincidem.",
+    "error_weak": "A senha não atende aos requisitos de segurança.",
+    "success_msg": "Senha alterada com sucesso! Redirecionando...",
+    "error_expired": "Erro ao resetar. O link pode ter expirado.",
+    "link_invalid_screen": "Link inválido.",
+    "title": "Nova Senha",
+    "placeholder_new": "Nova senha",
+    "placeholder_confirm": "Confirme a nova senha",
+    "btn_saving": "Salvando...",
+    "btn_default": "DEFINIR NOVA SENHA"
+  },
+  "register": {
+    "error_username_length": "O nome deve ter entre 3 e 50 caracteres.",
+    "error_password_length": "A senha deve ter entre 8 e 16 caracteres.",
+    "error_generic": "Erro ao cadastrar. Tente novamente.",
+    "success_title": "Quase lá!",
+    "success_msg_1": "Sua conta foi criada, mas a ilha é protegida.",
+    "success_msg_2": "Enviamos um link de confirmação para o seu e-mail.",
+    "success_msg_3": "Clique nele para ativar sua conta e entrar.",
+    "btn_go_login": "IR PARA LOGIN",
+    "form_title": "Crie sua Conta",
+    "placeholder_username": "Nome de Usuário (3-50 chars)",
+    "placeholder_email": "Seu melhor email",
+    "placeholder_password": "Crie uma senha forte",
+    "btn_register": "REGISTRAR",
+    "login_prompt": "Já tem uma conta?",
+    "login_link": "Faça Login aqui"
+  },
+  "verify": {
+    "loading_title": "Verificando...",
+    "loading_desc": "Validando sua passagem para a ilha.",
+    "success_title": "Conta Ativada!",
+    "success_desc": "Seu e-mail foi confirmado com sucesso. Agora você pode entrar e lançar suas mensagens.",
+    "btn_login": "IR PARA O LOGIN",
+    "error_title": "Ops!",
+    "error_desc": "O link de verificação é inválido ou já expirou.",
+    "btn_back": "Voltar para o início"
+  }
+}

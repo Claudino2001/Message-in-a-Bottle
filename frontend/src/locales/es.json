@@ -1,0 +1,122 @@
+{
+  "navbar": {
+    "home": "Inicio",
+    "write": "Escribir",
+    "my_bottles": "Mis Botellas",
+    "logout": "Salir",
+    "login": "Entrar"
+  },
+  "home": {
+    "bottles_in_ocean": "Botellas en el Océano",
+    "cta_title": "Envía tu mensaje al mundo ahora.",
+    "cta_button": "ESCRIBIR MENSAJE",
+    "how_it_works": "CÓMO FUNCIONA",
+    "rules_title": "El Código de la Marea 📜",
+    "card_1_title": "Eres un Náufrago",
+    "card_1_desc": "En este juego, eres un náufrago digital. Para participar, solo regístrate o inicia sesión. Aquí no hay fotos ni perfiles, solo tus palabras lanzadas al mar.",
+    "card_2_title": "Una Carta, Un Día",
+    "card_2_desc": "La escasez es valiosa. Puedes escribir y lanzar solo un mensaje al día. Tu carta se pone en una botella y se entrega al destino, no a ti.",
+    "card_3_title": "El Horizonte",
+    "card_3_desc": "¿Ves el número en el cielo? Cuenta las botellas flotando ahora. Representa el total de mensajes escritos por todos los náufragos, esperando la marea.",
+    "card_4_title": "La Marea de las 22h",
+    "card_4_desc": "Todos los días a las 22:00 (BRT), ocurre el gran sorteo. Las corrientes oceánicas llevan tu botella a un extraño y traen una nueva a tu playa.",
+    "card_5_title": "Lo Que Trae la Marea",
+    "card_5_desc": "La regla de oro: Escribes para el mundo, pero lees lo que recibes. Tus mensajes enviados parten para siempre. Pero las botellas que llegan a tu playa se guardan en tu lista para leer cuando quieras."
+  },
+  "footer": {
+    "rights_reserved": "Todos los derechos reservados."
+  },
+  "forgot_password": {
+    "title": "Recuperar Contraseña",
+    "description": "Ingresa tu correo abajo y te enviaremos un enlace mágico para restablecer tu contraseña.",
+    "email_placeholder": "Tu correo registrado",
+    "success_message": "Si este correo está registrado, recibirás un enlace de recuperación en instantes.",
+    "error_message": "Ocurrió un error al intentar enviar el correo. Inténtalo de nuevo.",
+    "sending": "Enviando...",
+    "send_btn": "ENVIAR ENLACE",
+    "back_to_login": "← Volver al Login"
+  },
+  "login": {
+    "title": "Iniciar Sesión",
+    "email_placeholder": "Tu correo",
+    "password_placeholder": "Tu contraseña",
+    "submit_button": "ENTRAR A LA ISLA",
+    "forgot_password": "Olvidé mi contraseña",
+    "no_account": "¿Aún no tienes cuenta?",
+    "register_link": "Crea tu cuenta ahora",
+    "error_missing_fields": "Por favor, completa correo y contraseña.",
+    "error_unknown": "Error desconocido al iniciar sesión.",
+    "error_connection": "Fallo en la conexión. Inténtalo de nuevo."
+  },
+  "my_bottles": {
+    "title": "Botellas que trajo la marea",
+    "loading": "Buscando en la arena...",
+    "empty_title": "Ninguna botella encontrada aún.",
+    "empty_subtitle": "¡Espera el sorteo de las 22h!",
+    "sort_newest": "Más Recientes",
+    "sort_oldest": "Más Antiguas",
+    "collapse_card": "Recoger carta"
+  },
+  "common": {
+    "password_rules_title": "Tu contraseña necesita:",
+    "password_rule_length": "8 a 16 caracteres",
+    "password_rule_uppercase": "1 Letra Mayúscula",
+    "password_rule_lowercase": "1 Letra Minúscula",
+    "password_rule_number": "1 Número"
+  },
+  "write": {
+    "validation_required": "Obligatorio.",
+    "already_sent_title": "¡Botella lanzada!",
+    "already_sent_desc": "Ya has lanzado tu botella diaria al océano.",
+    "back_to_home": "Volver al inicio",
+    "success_title": "¡Mensaje Enviado!",
+    "success_desc": "Tu botella está flotando en el océano digital.",
+    "back": "Volver",
+    "form_title": "Escribe tu Mensaje",
+    "label_title": "Título",
+    "placeholder_title": "Título de tu historia...",
+    "label_content": "Tu Historia",
+    "placeholder_content": "¿Qué quieres contarle al mundo hoy?",
+    "btn_send": "LANZAR AL MAR"
+  },
+  "reset_password": {
+    "error_invalid_token": "Token inválido o ausente.",
+    "error_mismatch": "Las contraseñas no coinciden.",
+    "error_weak": "La contraseña no cumple con los requisitos de seguridad.",
+    "success_msg": "¡Contraseña cambiada con éxito! Redirigiendo...",
+    "error_expired": "Error al restablecer. El enlace puede haber expirado.",
+    "link_invalid_screen": "Enlace inválido.",
+    "title": "Nueva Contraseña",
+    "placeholder_new": "Nueva contraseña",
+    "placeholder_confirm": "Confirma la nueva contraseña",
+    "btn_saving": "Guardando...",
+    "btn_default": "DEFINIR NUEVA CONTRASEÑA"
+  },
+  "register": {
+    "error_username_length": "El nombre debe tener entre 3 y 50 caracteres.",
+    "error_password_length": "La contraseña debe tener entre 8 y 16 caracteres.",
+    "error_generic": "Error al registrar. Inténtalo de nuevo.",
+    "success_title": "¡Casi listo!",
+    "success_msg_1": "Tu cuenta fue creada, pero la isla está protegida.",
+    "success_msg_2": "Enviamos un enlace de confirmación a tu correo.",
+    "success_msg_3": "Haz clic en él para activar tu cuenta y entrar.",
+    "btn_go_login": "IR A LOGIN",
+    "form_title": "Crea tu Cuenta",
+    "placeholder_username": "Nombre de Usuario (3-50 chars)",
+    "placeholder_email": "Tu mejor correo",
+    "placeholder_password": "Crea una contraseña fuerte",
+    "btn_register": "REGISTRAR",
+    "login_prompt": "¿Ya tienes una cuenta?",
+    "login_link": "Inicia Sesión aquí"
+  },
+  "verify": {
+    "loading_title": "Verificando...",
+    "loading_desc": "Validando tu pasaje a la isla.",
+    "success_title": "¡Cuenta Activada!",
+    "success_desc": "Tu correo fue confirmado con éxito. Ahora puedes entrar y lanzar tus mensajes.",
+    "btn_login": "IR A LOGIN",
+    "error_title": "¡Ups!",
+    "error_desc": "El enlace de verificación es inválido o ya expiró.",
+    "btn_back": "Volver al inicio"
+  }
+}
